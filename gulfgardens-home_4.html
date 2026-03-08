@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - gulfgardens | plant exporters in Thailand</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green-dark: #1a3a2a;
+    --green-mid: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --text: #2c2c2c;
+    --text-muted: #6b6b6b;
+    --border: #e2ddd6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; }
+
+  /* ─── TOP BAR ─── */
+  .topbar {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.75);
+    font-size: 12.5px;
+    padding: 7px 0;
+    letter-spacing: 0.3px;
+  }
+  .topbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .topbar a { color: rgba(255,255,255,0.75); transition: color 0.2s; }
+  .topbar a:hover { color: var(--gold-light); }
+  .topbar-left, .topbar-right { display: flex; align-items: center; gap: 20px; }
+  .topbar span { display: flex; align-items: center; gap: 6px; }
+  .topbar svg { width: 13px; height: 13px; fill: var(--gold); flex-shrink: 0; }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--green-dark);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-leaf {
+    width: 34px; height: 34px;
+    background: var(--green-mid);
+    border-radius: 50% 5px 50% 5px;
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(-10deg);
+  }
+  .logo-leaf svg { width: 18px; height: 18px; fill: white; }
+  .logo span { color: var(--green-mid); }
+
+  .nav-menu { display: flex; align-items: center; gap: 4px; list-style: none; }
+  .nav-menu > li { position: relative; }
+  .nav-menu > li > a {
+    display: flex; align-items: center; gap: 5px;
+    padding: 10px 14px;
+    font-size: 14px; font-weight: 500;
+    color: var(--text);
+    border-radius: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-menu > li > a:hover { color: var(--green-mid); background: var(--green-pale); }
+  .nav-menu > li > a svg { width: 11px; height: 11px; fill: currentColor; opacity: 0.6; }
+
+  /* Dropdown */
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    min-width: 200px;
+    padding: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: all 0.2s;
+    z-index: 200;
+  }
+  .nav-menu > li:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dropdown li { list-style: none; }
+  .dropdown a {
+    display: block; padding: 8px 18px;
+    font-size: 13.5px; color: var(--text-muted);
+    transition: all 0.15s;
+  }
+  .dropdown a:hover { color: var(--green-mid); background: var(--green-pale); padding-left: 24px; }
+
+  /* Mega dropdown for Products */
+  .mega-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: -120px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
+    gap: 8px 24px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: all 0.2s;
+    z-index: 200;
+  }
+  .nav-menu > li:hover .mega-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+  .mega-col h4 {
+    font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--green-mid);
+    margin-bottom: 8px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--green-pale);
+  }
+  .mega-col ul { list-style: none; }
+  .mega-col ul li a { display: block; padding: 4px 0; font-size: 13px; color: var(--text-muted); transition: color 0.15s; }
+  .mega-col ul li a:hover { color: var(--green-mid); }
+
+  .nav-cta {
+    background: var(--green-mid);
+    color: white !important;
+    padding: 9px 20px !important;
+    border-radius: 6px !important;
+    font-weight: 500;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-dark) !important; color: white !important; }
+
+  /* ─── HERO SLIDER ─── */
+  .hero {
+    position: relative;
+    height: 88vh;
+    min-height: 540px;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    display: flex; align-items: center;
+  }
+  .slide.active { opacity: 1; z-index: 2; }
+
+  .slide-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+  }
+  .slide-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(10,30,18,0.72) 0%, rgba(10,30,18,0.3) 60%, transparent 100%);
+  }
+
+  .slide-content {
+    position: relative; z-index: 3;
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 60px;
+    color: white;
+  }
+  .slide-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold-light);
+    margin-bottom: 18px;
+    opacity: 0; transform: translateY(20px);
+    animation: none;
+  }
+  .slide.active .slide-tag { animation: slideUp 0.7s 0.3s both; }
+  .slide.active .slide-title { animation: slideUp 0.7s 0.5s both; }
+  .slide.active .slide-desc { animation: slideUp 0.7s 0.7s both; }
+  .slide.active .slide-btn { animation: slideUp 0.7s 0.9s both; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .slide-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 5.5vw, 68px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    max-width: 640px;
+    opacity: 0;
+  }
+  .slide-title em { color: var(--gold-light); font-style: italic; }
+  .slide-desc {
+    font-size: 16px; font-weight: 300; line-height: 1.7;
+    max-width: 480px; color: rgba(255,255,255,0.82);
+    margin-bottom: 32px; opacity: 0;
+  }
+  .slide-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold);
+    color: var(--green-dark);
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-weight: 600; font-size: 14px; letter-spacing: 0.5px;
+    transition: all 0.25s; opacity: 0;
+  }
+  .slide-btn:hover { background: var(--gold-light); transform: translateX(4px); }
+  .slide-btn svg { width: 16px; height: 16px; }
+
+  /* Slide dots */
+  .hero-dots {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; gap: 10px; z-index: 10;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); cursor: pointer;
+    transition: all 0.3s; border: none;
+  }
+  .dot.active { background: var(--gold); width: 28px; border-radius: 4px; }
+
+  /* Hero scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 30px; right: 60px; z-index: 10;
+    color: rgba(255,255,255,0.5); font-size: 11px; letter-spacing: 2px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    writing-mode: vertical-rl; text-orientation: mixed;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.6); opacity: 0.4; }
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 80px 24px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--green-mid);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 700; color: var(--green-dark);
+    line-height: 1.2; margin-bottom: 18px;
+  }
+  .section-body {
+    font-size: 15.5px; line-height: 1.8;
+    color: var(--text-muted); max-width: 620px;
+  }
+
+  /* ─── ABOUT ─── */
+  .about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px; align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%; aspect-ratio: 4/5;
+    object-fit: cover; border-radius: 4px 40px 4px 40px;
+    box-shadow: 16px 16px 0 var(--green-pale);
+  }
+  .about-img-accent {
+    position: absolute; bottom: -24px; right: -24px;
+    width: 45%; aspect-ratio: 1;
+    object-fit: cover; border-radius: 4px;
+    border: 4px solid white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .about-badge {
+    position: absolute; top: 24px; left: -20px;
+    background: var(--green-dark);
+    color: white; padding: 18px 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .about-badge strong { display: block; font-size: 32px; font-family: 'Cormorant Garamond', serif; line-height: 1; }
+  .about-badge span { font-size: 11px; letter-spacing: 1px; opacity: 0.75; }
+  .features-list { list-style: none; margin: 28px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .features-list li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; font-weight: 500; color: var(--text);
+  }
+  .features-list li::before {
+    content: '';
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green-light); flex-shrink: 0;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--green-mid); color: white;
+    padding: 13px 28px; border-radius: 4px;
+    font-weight: 500; font-size: 14px; transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--green-dark); gap: 14px; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    border: 1.5px solid var(--green-mid); color: var(--green-mid);
+    padding: 13px 28px; border-radius: 4px;
+    font-weight: 500; font-size: 14px; transition: all 0.2s;
+    margin-left: 14px;
+  }
+  .btn-outline:hover { background: var(--green-pale); }
+
+  /* ─── PRODUCTS ─── */
+  .products { background: white; }
+  .products-header { text-align: center; margin-bottom: 52px; }
+  .products-header .section-body { margin: 0 auto; }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .product-card {
+    position: relative; overflow: hidden;
+    border-radius: 12px; cursor: pointer;
+    aspect-ratio: 3/4;
+    transition: transform 0.3s;
+  }
+  .product-card:hover { transform: translateY(-6px); }
+  .product-card:first-child { grid-column: span 2; aspect-ratio: unset; }
+
+  .product-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .product-card:hover img { transform: scale(1.08); }
+  .product-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,35,20,0.75) 0%, transparent 55%);
+  }
+  .product-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    z-index: 2; padding: 20px 18px 18px;
+    color: white;
+  }
+  .product-label h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .product-label span {
+    font-size: 11px; letter-spacing: 1px;
+    color: var(--gold-light); text-transform: uppercase;
+  }
+  .product-arrow {
+    position: absolute; top: 16px; right: 16px;
+    z-index: 2;
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .product-arrow svg { width: 14px; height: 14px; fill: white; }
+  .product-card:hover .product-arrow { opacity: 1; }
+
+  /* ─── STATS ─── */
+  .stats {
+    background: var(--green-dark);
+    padding: 60px 24px;
+    position: relative; overflow: hidden;
+  }
+  .stats::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .stats-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 32px; text-align: center; position: relative;
+  }
+  .stat-item { color: white; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 58px; font-weight: 700; line-height: 1;
+    color: var(--gold-light);
+  }
+  .stat-num span { font-size: 32px; }
+  .stat-label { font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.65; margin-top: 8px; }
+
+  /* ─── WHY US ─── */
+  .whyus { background: var(--cream); }
+  .whyus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+  .why-list { list-style: none; margin-top: 28px; }
+  .why-item {
+    display: flex; gap: 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .why-icon {
+    width: 44px; height: 44px;
+    background: var(--green-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .why-icon svg { width: 20px; height: 20px; fill: var(--green-mid); }
+  .why-text h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .why-text p { font-size: 13.5px; color: var(--text-muted); line-height: 1.6; }
+
+  .service-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+  .service-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px;
+    transition: all 0.25s;
+  }
+  .service-card:hover { border-color: var(--green-light); box-shadow: 0 6px 24px rgba(45,106,79,0.1); }
+  .service-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--green-dark); }
+  .service-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .service-card .sc-icon {
+    width: 36px; height: 36px;
+    background: var(--green-pale);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .service-card .sc-icon svg { width: 18px; height: 18px; fill: var(--green-mid); }
+
+  /* ─── PROCESS ─── */
+  .process { background: white; }
+  .process-header { text-align: center; margin-bottom: 60px; }
+  .process-header .section-body { margin: 0 auto; }
+  .steps { display: flex; gap: 0; position: relative; }
+  .steps::before {
+    content: '';
+    position: absolute; top: 28px; left: calc(10%);
+    right: calc(10%); height: 2px;
+    background: linear-gradient(to right, var(--green-pale), var(--green-light), var(--green-pale));
+    z-index: 0;
+  }
+  .step { flex: 1; text-align: center; padding: 0 16px; position: relative; z-index: 1; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--green-mid); color: white;
+    border-radius: 50%; font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px;
+    border: 4px solid white;
+    box-shadow: 0 4px 16px rgba(45,106,79,0.25);
+    transition: all 0.25s;
+  }
+  .step:hover .step-num { background: var(--green-dark); transform: scale(1.08); }
+  .step h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--green-dark); }
+  .step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ─── VERIFIED ─── */
+  .verified {
+    background: var(--green-dark);
+    padding: 60px 24px; text-align: center; color: white;
+  }
+  .verified h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(24px, 3.5vw, 38px);
+    font-weight: 600; max-width: 680px;
+    margin: 0 auto 24px; line-height: 1.3;
+  }
+  .verified p { color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto 32px; font-size: 15px; line-height: 1.7; }
+  .badge-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; margin-top: 40px; }
+  .badge-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 18px 24px;
+    text-align: center; min-width: 140px;
+  }
+  .badge-item svg { width: 32px; height: 32px; fill: var(--gold-light); margin-bottom: 10px; }
+  .badge-item p { font-size: 12px; color: rgba(255,255,255,0.6); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0e2218;
+    color: rgba(255,255,255,0.65);
+    padding: 56px 24px 0;
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 48px; padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700; color: white; margin-bottom: 14px;
+  }
+  .footer-logo span { color: var(--green-light); }
+  .footer-desc { font-size: 13.5px; line-height: 1.75; margin-bottom: 22px; }
+  .social-links { display: flex; gap: 10px; }
+  .social-link {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.65); font-size: 13px;
+    transition: all 0.2s; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .social-link:hover { background: var(--green-mid); color: white; border-color: transparent; }
+  .footer-col h4 {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { font-size: 13.5px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--green-light); }
+  .contact-item { display: flex; gap: 10px; margin-bottom: 14px; font-size: 13.5px; }
+  .contact-item svg { width: 16px; height: 16px; fill: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .contact-item a { color: rgba(255,255,255,0.6); transition: color 0.2s; }
+  .contact-item a:hover { color: var(--green-light); }
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    padding: 20px 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12.5px; color: rgba(255,255,255,0.3);
+    flex-wrap: wrap; gap: 10px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-card:first-child { grid-column: span 2; aspect-ratio: 16/7; }
+    .about-grid, .whyus-grid { grid-template-columns: 1fr; gap: 40px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .mega-dropdown { grid-template-columns: repeat(2, 160px); }
+    .steps { flex-direction: column; gap: 24px; }
+    .steps::before { display: none; }
+  }
+  @media (max-width: 640px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card:first-child { grid-column: span 1; }
+    .slide-content { padding: 0 24px; }
+    .service-cards { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    nav { position: relative; }
+    .nav-menu { display: none; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <a href="#">Bangkok, Thailand</a>
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:info@gulfgardens.co.th">info@gulfgardens.co.th</a>
+      </span>
+    </div>
+    <div class="topbar-right">
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <a href="tel:+66989857999">+66-989857999</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-leaf">
+        <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-9.5 4.5l.5 1.5C16 6 17 8 17 8z"/></svg>
+      </div>
+      Gulf<span>Gardens</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="#">Home</a></li>
+      <li>
+        <a href="#">Company <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Mission &amp; Vision</a></li>
+          <li><a href="#">Projects</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Products <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <div class="mega-dropdown">
+          <div class="mega-col">
+            <h4>Flowering Trees</h4>
+            <ul>
+              <li><a href="#">Jacaranda</a></li>
+              <li><a href="#">Tabebuia Rosea</a></li>
+              <li><a href="#">Bougainvillea</a></li>
+              <li><a href="#">Delonix regia</a></li>
+              <li><a href="#">Cassia Fistula</a></li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <h4>Shade Trees</h4>
+            <ul>
+              <li><a href="#">Albizia saman</a></li>
+              <li><a href="#">Albizia lebbeck</a></li>
+              <li><a href="#">Terminalia catappa</a></li>
+              <li><a href="#">Pongamia pinnata</a></li>
+            </ul>
+          </div>
+          <div class="mega-col">
+            <h4>More</h4>
+            <ul>
+              <li><a href="#">Ornamental Shrubs</a></li>
+              <li><a href="#">Palms &amp; Cycads</a></li>
+              <li><a href="#">Fruits</a></li>
+              <li><a href="#">View All</a></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li><a href="#">Order Process</a></li>
+      <li><a href="#">Blog <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></a>
+        <ul class="dropdown">
+          <li><a href="#">Ficus Tree Guide</a></li>
+          <li><a href="#">Flowering Shrubs</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero">
+  <!-- Slide 1 -->
+  <div class="slide active" id="slide-0">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1600&q=80')"></div>
+    <div class="slide-content">
+      <div class="slide-tag">🌿 Thai Plant Exporters</div>
+      <h1 class="slide-title">We Make Places <em>Look Great</em></h1>
+      <p class="slide-desc">From the finest nurseries in Thailand to the Middle East and worldwide — high-quality tropical plants delivered with care.</p>
+      <a href="#products" class="slide-btn">
+        Explore Our Plants
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l8 7-8 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Slide 2 -->
+  <div class="slide" id="slide-1">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=80')"></div>
+    <div class="slide-content">
+      <div class="slide-tag">🌸 Wide Variety</div>
+      <h1 class="slide-title">Gulf Gardens <em>Products</em></h1>
+      <p class="slide-desc">Ornamental trees, Adenium, Plumeria, Bougainvillea, Palms, Cycads, Rare variegated plants, and more.</p>
+      <a href="#products" class="slide-btn">
+        View Products
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l8 7-8 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Slide 3 -->
+  <div class="slide" id="slide-2">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80')"></div>
+    <div class="slide-content">
+      <div class="slide-tag">🤝 Reliable Partner</div>
+      <h1 class="slide-title">Your <em>Reliable</em> Export Partner</h1>
+      <p class="slide-desc">Whether a private garden or a government project — our nurseries and partners will always deliver to your scale.</p>
+      <a href="#contact" class="slide-btn">
+        Get a Quotation
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l8 7-8 7"/></svg>
+      </a>
+    </div>
+  </div>
+  <!-- Slide 4 -->
+  <div class="slide" id="slide-3">
+    <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80')"></div>
+    <div class="slide-content">
+      <div class="slide-tag">⭐ Customer First</div>
+      <h1 class="slide-title">Customer Satisfaction <em>is Our Prime</em></h1>
+      <p class="slide-desc">We provide healthy plants at the minimum damage rate, delivered right to your destination.</p>
+      <a href="#contact" class="slide-btn">
+        Contact Us
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l8 7-8 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-dots">
+    <button class="dot active" onclick="goSlide(0)"></button>
+    <button class="dot" onclick="goSlide(1)"></button>
+    <button class="dot" onclick="goSlide(2)"></button>
+    <button class="dot" onclick="goSlide(3)"></button>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <img class="about-img-main" src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=800&q=80" alt="Gulf Gardens nursery">
+        <img class="about-img-accent" src="https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=400&q=80" alt="Tropical plants">
+        <div class="about-badge">
+          <strong>11+</strong>
+          <span>Years<br>Experience</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">Thai-Based Plant Exporters Since Day One</h2>
+        <p class="section-body">We are a Thai-based company founded by Mr. Ittipan Salam and Mr. Atteya Abdildayem, with over 11 years of experience in exporting. We ship a wide range of plants from the finest nurseries in Thailand to the Middle East and beyond.</p>
+        <ul class="features-list">
+          <li>Reliable and responsive</li>
+          <li>Wide varieties of plants</li>
+          <li>Fair trade pricing</li>
+          <li>Year-round availability</li>
+          <li>Full fleet of trucks</li>
+          <li>Any project size</li>
+        </ul>
+        <a href="#" class="btn-primary">
+          About Us
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l8 7-8 7"/></svg>
+        </a>
+        <a href="#contact" class="btn-outline">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="products-header">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Plant Categories</h2>
+      <p class="section-body">We offer a wide variety of Thai ornamental plants suited for gardens, landscaping projects, and commercial spaces worldwide.</p>
+    </div>
+    <div class="products-grid">
+      <a href="#" class="product-card">
+        <img src="https://images.unsplash.com/photo-1620127682229-33388276e540?w=800&q=80" alt="Flowering Trees">
+        <div class="product-label">
+          <span>Most Popular</span>
+          <h3>Flowering Trees</h3>
+        </div>
+        <div class="product-arrow"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg></div>
+      </a>
+      <a href="#" class="product-card">
+        <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&q=80" alt="Ornamental Shrubs">
+        <div class="product-label">
+          <h3>Ornamental Shrubs</h3>
+        </div>
+        <div class="product-arrow"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg></div>
+      </a>
+      <a href="#" class="product-card">
+        <img src="https://images.unsplash.com/photo-1602492955836-07f7e62caed8?w=600&q=80" alt="Fruits">
+        <div class="product-label">
+          <h3>Fruit Trees</h3>
+        </div>
+        <div class="product-arrow"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg></div>
+      </a>
+      <a href="#" class="product-card">
+        <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=600&q=80" alt="Shade Trees">
+        <div class="product-label">
+          <h3>Shade Trees</h3>
+        </div>
+        <div class="product-arrow"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg></div>
+      </a>
+      <a href="#" class="product-card">
+        <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?w=600&q=80" alt="Palms">
+        <div class="product-label">
+          <h3>Palms &amp; Cycads</h3>
+        </div>
+        <div class="product-arrow"><svg viewBox="0 0 24 24"><path d="M8 5l8 7-8 7"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">11<span>+</span></div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">5<span>M+</span></div>
+      <div class="stat-label">Exported Trees</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">500<span>+</span></div>
+      <div class="stat-label">Satisfied Customers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50<span>+</span></div>
+      <div class="stat-label">Local Business Partners</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="whyus">
+  <div class="container">
+    <div class="whyus-grid">
+      <div>
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Your Plants, Our Responsibility</h2>
+        <p class="section-body">Our customers' orders are our orders. We take full responsibility from planting here to receiving at destination.</p>
+        <ul class="why-list">
+          <li class="why-item">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+            <div class="why-text"><h4>Quality Control</h4><p>Strict QC process from young plants sourcing to final delivery packaging.</p></div>
+          </li>
+          <li class="why-item">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4z"/></svg></div>
+            <div class="why-text"><h4>Full Fleet of Trucks</h4><p>We handle all logistics with our own fleet, ensuring timely and safe delivery.</p></div>
+          </li>
+          <li class="why-item">
+            <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div class="why-text"><h4>Verified &amp; Trusted</h4><p>Verified by foreign embassies in Bangkok and the Department of Business Development.</p></div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="section-label">We Serve</div>
+        <h2 class="section-title">Who We Work With</h2>
+        <p class="section-body">From private individuals to large-scale international projects, every order gets the same dedication.</p>
+        <div class="service-cards">
+          <div class="service-card">
+            <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>
+            <h4>Residential</h4>
+            <p>Private gardens and home landscaping projects.</p>
+          </div>
+          <div class="service-card">
+            <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg></div>
+            <h4>Government</h4>
+            <p>Large-scale public landscaping and urban greening.</p>
+          </div>
+          <div class="service-card">
+            <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+            <h4>Garden Centers</h4>
+            <p>Wholesale supply for retail nurseries and garden shops.</p>
+          </div>
+          <div class="service-card">
+            <div class="sc-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg></div>
+            <h4>International</h4>
+            <p>Export to Middle East, Australia, Singapore, and more.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER PROCESS -->
+<section class="process">
+  <div class="container">
+    <div class="process-header">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Simple Order Process</h2>
+      <p class="section-body">Getting your plants from Thailand has never been easier. Follow these 4 steps.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Inquire</h4>
+        <p>Send us your plant list via email or phone with quantity and destination.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Get Quotation</h4>
+        <p>We provide a detailed quotation with pricing, timeline, and plant specs.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Confirm &amp; Pack</h4>
+        <p>Upon approval, we prepare, inspect, and carefully package all plants.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Ship &amp; Deliver</h4>
+        <p>Plants are shipped with phytosanitary certificate to your destination.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFIED -->
+<section class="verified">
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="section-label" style="color: var(--gold-light);">Trust &amp; Credibility</div>
+    <h2>Our Company Has Been Verified by Foreign Embassies in Bangkok &amp; the Department of Business Development</h2>
+    <p>Call us at +66-989857999. We'll provide you with a quotation with expected delivery dates and full guidance on importing plants from Thailand.</p>
+    <a href="#contact" class="slide-btn" style="margin: 0 auto; display: inline-flex;">
+      Get in Touch
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8 5l8 7-8 7"/></svg>
+    </a>
+    <div class="badge-row">
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        <p>Embassy<br>Verified</p>
+      </div>
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.38 0-2.55-2.07-4.62-4.62-4.62-1.38 0-2.61.59-3.5 1.52L8 3.4 6.12 1.52C5.23.59 4 0 2.62 0 .07 0-2 2.07-2 4.62c0 .5.11.94.18 1.38H-2v2h22V6z"/></svg>
+        <p>11+ Years<br>Experience</p>
+      </div>
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        <p>Quality<br>Certified</p>
+      </div>
+      <div class="badge-item">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+        <p>Year-Round<br>Availability</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Gulf<span>Gardens</span></div>
+      <p class="footer-desc">A Thai company for exporting plants with more than 11 years of experience. By establishing its own nurseries and partnering with local businesses, it has strengthened its position as the best plant exporter in Thailand.</p>
+      <div class="social-links">
+        <a href="https://www.facebook.com/gulfGardens11" class="social-link" target="_blank">f</a>
+        <a href="https://twitter.com/GulfGardens1" class="social-link" target="_blank">𝕏</a>
+        <a href="https://www.instagram.com/gulfgardens1/" class="social-link" target="_blank">ig</a>
+        <a href="https://api.whatsapp.com/send/?phone=66989857999" class="social-link" target="_blank">wa</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Mission &amp; Vision</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#">Flowering Trees</a></li>
+        <li><a href="#">Ornamental Shrubs</a></li>
+        <li><a href="#">Shade Trees</a></li>
+        <li><a href="#">Palms &amp; Cycads</a></li>
+        <li><a href="#">Fruit Trees</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <a href="tel:+66989857999">+66-989857999</a>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <a href="mailto:info@gulfgardens.co.th">info@gulfgardens.co.th</a>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>
+        <span>บ้านสวนไผ่ดร.จุ๋ง, ต.ชะอม, Kaeng Khoi District, Saraburi 18110</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Gulf Gardens Co., Ltd. All rights reserved.</span>
+    <span>Plant Exporters in Thailand</span>
+  </div>
+</footer>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function goSlide(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  function nextSlide() {
+    goSlide((current + 1) % slides.length);
+  }
+
+  let timer = setInterval(nextSlide, 5500);
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goSlide(i);
+      timer = setInterval(nextSlide, 5500);
+    });
+  });
+
+  // Animate stats on scroll
+  const statNums = document.querySelectorAll('.stat-num');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.3 });
+  statNums.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
